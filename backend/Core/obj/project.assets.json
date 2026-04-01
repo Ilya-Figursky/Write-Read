@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ilyaf\\Downloads\\Write&Read\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Project\\Write&Read\\backend\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\Users\\ilyaf\\Downloads\\Write&Read\\Core\\Core.csproj",
+      "projectPath": "C:\\Project\\Write&Read\\backend\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\ilyaf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ilyaf\\Downloads\\Write&Read\\Core\\obj\\",
+      "outputPath": "C:\\Project\\Write&Read\\backend\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
