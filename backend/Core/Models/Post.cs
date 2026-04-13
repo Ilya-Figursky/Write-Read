@@ -14,10 +14,10 @@ namespace Core.Models
         public List<Comment> Comments { get; private set; }
         public int ComplaintCount { get; private set; }
 
-        public Post(string AuthorName, string Content)
+        public Post(string authorName, string content)
         {
-            this.AuthorName = AuthorName;
-            this.Content = Content;
+            this.AuthorName = authorName;
+            this.Content = content;
             CreatedAt = DateTime.Now;
             ReactionCount = 0;
             ComplaintCount = 0;
