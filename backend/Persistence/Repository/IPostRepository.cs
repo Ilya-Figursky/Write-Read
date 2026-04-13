@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Persistence.Repository
 {
-    public interface IPostReposytory
+    public interface IPostRepository
     {
         public async Task GetAllPosts() { }
 
