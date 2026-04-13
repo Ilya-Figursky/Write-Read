@@ -8,9 +8,10 @@ namespace Core.Models
     {
         public string AuthorName { get; set; }
         public string Content { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int ReactionCount { get; set; }
-        public List<Comment>? Comments;
+        public DateTime CreatedAt { get; private set; }
+        public int ReactionCount { get; private set; }
+        public List<Comment> Comments { get; private set; }
+        public int ComplaintCount { get; private set; }
 
         public Comment(string AuthorName, string Content)
         {
@@ -18,7 +19,12 @@ namespace Core.Models
             this.Content = Content;
             CreatedAt = DateTime.Now;
             ReactionCount = 0;
-            Comments = null;
+            ComplaintCount = 0;
+            Comments = new();
         }
+
+        public void AddReaction() { ReactionCount++; }
+        public void AddComplaint() { ComplaintCount++; }
+        public void AddComent(Comment comment) { Comments.Add(comment); }
     }
 }
