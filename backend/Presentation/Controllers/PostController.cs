@@ -17,9 +17,11 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllNotes()
+        public async Task<IActionResult> GetAllPosts()
         {
-
+            var posts = await _postService.GetAllPosts();
+            if (posts == null) return NotFound();
+            return Ok(posts);
         }
 
     }
