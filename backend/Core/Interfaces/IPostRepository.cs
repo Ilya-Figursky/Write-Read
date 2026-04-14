@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Models;
 
 namespace Persistence.Repository
 {
     public interface IPostRepository
     {
-        public async Task GetAllPosts() { }
-
-        public async Task PostPost() { }
+        Task<List<Post>> GetAllPosts();
+        //Task PostPost();
     }
 }
