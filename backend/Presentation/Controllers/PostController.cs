@@ -22,6 +22,9 @@ namespace Presentation.Controllers
             var posts = await _postService.GetAllPosts();
             if (posts == null) return NotFound();
             return Ok(posts);
+
+            // add register all new serviers before start test
+
         }
 
     }

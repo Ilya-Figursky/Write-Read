@@ -42,10 +42,10 @@ namespace Persistence.Repository
                     author_name,
                     content,
                     created_at,
-                    reaction_count
+                    reaction_count,
                     complaint_count
                     FROM posts
-                    ORDER BY created_at DESC,
+                    ORDER BY created_at DESC
                     LIMIT 10";
 
             using var command = new NpgsqlCommand(sql, connection);
