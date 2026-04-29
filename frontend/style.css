@@ -1,0 +1,16 @@
+#postFeed {
+    width: 600px;
+    margin: auto;
+    background-color: white;
+    border: 1px solid black;
+    margin-top: 50px;
+}
+
+#registerButton {
+    display: block;
+    margin: 0 auto;
+}
+
+#registerHeader {
+    text-align: center;
+}
