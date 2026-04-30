@@ -11,11 +11,6 @@ namespace Presentation.Controllers
     {
         IPostService _postService;
 
-        public PostController(IPostService postService)
-        {
-            _postService = postService;
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAllPosts()
         {
@@ -27,5 +22,10 @@ namespace Presentation.Controllers
 
         }
 
+
+        public PostController(IPostService postService)
+        {
+            _postService = postService;
+        }
     }
 }

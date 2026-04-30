@@ -14,3 +14,13 @@
 #registerHeader {
     text-align: center;
 }
+
+#register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+}
+

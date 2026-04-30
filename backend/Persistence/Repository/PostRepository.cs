@@ -9,7 +9,7 @@ namespace Persistence.Repository
     {
         private readonly DbProvider _provider;
 
-        public PostRepository(DbProvider provider) => _provider = provider;
+        public PostRepository(DbProvider provider) { _provider = provider; }
    
         /*
         public async Task PostPost(int Id)

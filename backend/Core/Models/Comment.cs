@@ -6,6 +6,7 @@ namespace Core.Models
 {
     public class Comment
     {
+        public Guid Id { get; private set; }
         public string AuthorName { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; private set; }
@@ -15,6 +16,7 @@ namespace Core.Models
 
         public Comment(string authorName, string content)
         {
+            Id = Guid.NewGuid();
             this.AuthorName = authorName;
             this.Content = content;
             CreatedAt = DateTime.Now;

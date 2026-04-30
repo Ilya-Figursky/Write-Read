@@ -1,4 +1,5 @@
 using Application.Services;
+using Core.Interfaces;
 using Persistence.Context;
 using Persistence.Repository;
 
@@ -23,12 +24,14 @@ namespace Presentation
             builder.Services.AddScoped<DbProvider>(provider => new DbProvider(connectionString));
             builder.Services.AddScoped<IPostRepository, PostRepository>();
             builder.Services.AddScoped<IPostService, PostService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IUserReposytory, UserRepository>();
 
             builder.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins("http://127.0.0.1:5500") // Адрес твоего фронтенда из Live Server
+                    policy.WithOrigins("http://127.0.0.1:5500") // Адрес фронтенда из Live Server для прохождения проверки браузера
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });

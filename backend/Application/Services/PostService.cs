@@ -10,10 +10,7 @@ namespace Application.Services
     public class PostService : IPostService
     {
         IPostRepository _repository;
-        public PostService(IPostRepository postRepository)
-        {
-            _repository = postRepository;
-        }
+        public PostService(IPostRepository postRepository) {_repository = postRepository; }
         public async Task<List<PostDTO>> GetAllPosts() 
         { 
             List<Post> posts = new();

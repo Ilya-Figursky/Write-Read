@@ -5,15 +5,16 @@ using System.Text;
 
 namespace Core.Models
 {
-    internal class User
+    public class User
     {
         public string Name { get; set; }
         public Guid Id { get; private set; }
         public List<Post> UserPosts { get; private set; }
-        public int Password { get; private set; }
+        public string Password { get; private set; }
 
-        public User(string name, int password)
+        public User(string name, string password)
         {
+            Id = Guid.NewGuid();
             Name = name;
             Password = password;
             UserPosts = new();
