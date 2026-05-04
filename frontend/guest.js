@@ -31,9 +31,4 @@ async function loadPosts()
     }
 }
 
-
-
-
-
-
  window.onload = loadPosts;
