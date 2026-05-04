@@ -9,7 +9,7 @@ namespace Application.Services
     public interface IUserService
     {
         Task<User> SignUp(UserRegisterDTO userRegister);
-        //Task<User> SignIn();
+        Task<(User user, int statusCode)> SignIn(string name, string password);
         //Task<User> GetUserLoginStatus();
     }
 }

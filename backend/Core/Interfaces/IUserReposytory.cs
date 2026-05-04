@@ -8,7 +8,7 @@ namespace Core.Interfaces
     public interface IUserReposytory
     {
         Task<User> SignUp(User user);
-        //Task<User> SignIn();
+        Task<User> SignIn(User user);
         //Task<User> GetUserLoginStatus();
     }
 }

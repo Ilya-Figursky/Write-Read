@@ -54,8 +54,7 @@ namespace Persistence.Repository
 
             using var reader = await command.ExecuteReaderAsync();
 
-
-            while(await reader.ReadAsync())
+            while (await reader.ReadAsync())
             {
                 var post = new Post();
 

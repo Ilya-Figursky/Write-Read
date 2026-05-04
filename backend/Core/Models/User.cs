@@ -19,5 +19,17 @@ namespace Core.Models
             Password = password;
             UserPosts = new();
         }
+        public User(string name) { Name = name; }
+        public User() 
+        {
+            Id = Guid.Empty;
+            Name = "";
+            Password = "";
+            UserPosts = new();
+        }
+
+        public void SetId(Guid id) { Id = Guid.NewGuid(); }
+        public void SetPassword(string value) { Password = value; }
+
     }
 }
