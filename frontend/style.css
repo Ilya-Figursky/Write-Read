@@ -3,7 +3,7 @@
     margin: auto;
     background-color: white;
     border: 1px solid black;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 #registerButton {
@@ -24,3 +24,36 @@
     gap: 20px;
 }
 
+#writePostButtonDiv {
+    margin: 0;
+    height: 10vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#writePostButton {
+    margin: 0;
+    height: 5vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+#postFormContainer {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column; /* IMPORTANT: stack vertically */
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px; /* space between input and button */
+}
+
+#postFormInput {
+    height: 100px;
+    width: 500px;
+}
