@@ -47,20 +47,21 @@ async function SignIn()
 
     try
     {
-        const response1 = await fetch("https://localhost:7109/wr/register/signin",{
+        const response = await fetch("https://localhost:7109/wr/register/signin",{
             method: 'POST',
             headers: {'Content-type' : 'application/json'},
             body: JSON.stringify(userData)
         });
 
-        if(!response1.ok) {throw new Error("Connection error or Sign in error")}
+        if(!response.ok) {throw new Error("Connection error or Sign in error")}
 
-        const result = await response1.json();
+        const result = await response.json();
 
         console.log("Successfully");
         alert("Successfully sign in");
 
-        sessionStorage.setItem("userId", result.id)
+        sessionStorage.setItem("userId", result.id);
+        sessionStorage.setItem("userName", result.name);
 
         window.location.href = "home.html";
     } catch(error)

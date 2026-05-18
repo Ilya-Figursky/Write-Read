@@ -1,3 +1,10 @@
+
+const userName = document.getElementById("userName");
+const userNameFromStorage = sessionStorage.getItem("userName");
+
+userName.textContent = userNameFromStorage;
+
+
 function checkAuth()
 {
     const userId = sessionStorage.getItem("userId");
@@ -9,7 +16,6 @@ function checkAuth()
 
     console.log("Authorization error");
 }
-
 
 async function loadPosts()
 {
