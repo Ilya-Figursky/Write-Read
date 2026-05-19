@@ -21,11 +21,14 @@ namespace Presentation.Controllers
             // add register all new serviers before start test
 
         }
-
-
-        public PostController(IPostService postService)
+        [HttpPost("{userId}")]
+        public async Task<IActionResult> SavePost([FromRoute] Guid userId, [FromBody] string textContent)
         {
-            _postService = postService;
+            await _postService.SavePost(textContent, userId);
+
+            return Ok();
         }
+
+        public PostController(IPostService postService){ _postService = postService; }
     }
 }

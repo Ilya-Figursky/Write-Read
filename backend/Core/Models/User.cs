@@ -28,7 +28,7 @@ namespace Core.Models
             UserPosts = new();
         }
 
-        public void SetId(Guid id) { Id = Guid.NewGuid(); }
+        public void SetId(Guid id) { Id = id; }
         public void SetPassword(string value) { Password = value; }
 
     }

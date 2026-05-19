@@ -9,5 +9,6 @@ namespace Application.Services
     public interface IPostService
     {
         Task<List<PostDTO>> GetAllPosts();
+        Task SavePost(string textContent, Guid userId);
     }
 }

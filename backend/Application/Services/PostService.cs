@@ -4,13 +4,15 @@ using System.Text;
 using Persistence.Repository;
 using Core.Models;
 using Application.DTOs;
+using Core.Interfaces;
 
 namespace Application.Services
 {
     public class PostService : IPostService
     {
         IPostRepository _repository;
-        public PostService(IPostRepository postRepository) {_repository = postRepository; }
+        IUserReposytory _userRepository;
+        
         public async Task<List<PostDTO>> GetAllPosts() 
         { 
             List<Post> posts = new();
@@ -34,5 +36,19 @@ namespace Application.Services
             }
             return postsDTO;
         }
+
+        public async Task SavePost(string textContent, Guid userId)
+        {
+            User user = await _userRepository.GetUserDataById(userId);
+
+            Post post = new Post(user.Name, textContent, userId);
+
+            await _repository.SavePost(post);
+        }
+
+
+
+        public PostService(IPostRepository postRepository, IUserReposytory userReposytory) { _repository = postRepository; _userRepository = userReposytory; }
+        
     }
 }

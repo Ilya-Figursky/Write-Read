@@ -5,33 +5,13 @@ using Core.Models;
 
 namespace Persistence.Repository
 {
-    public class PostRepository: IPostRepository
+    public class PostRepository : IPostRepository
     {
         private readonly DbProvider _provider;
 
         public PostRepository(DbProvider provider) { _provider = provider; }
-   
-        /*
-        public async Task PostPost(int Id)
-        {
-            using var connection = _provider.GetConnection();
-            await connection.OpenAsync();
 
-            var sql = "INSERT INTO post(Id, Text) VALUES(@Id, @Text)";
-
-            using var command = new NpgsqlCommand(sql, connection);
-
-
-            // write unit test for that method. For check how does it work
-
-
-            command.Parameters.AddWithValue("Id", Id);
-            //command.Parameters.AddWithValue("@params", specific my value from another code);
-
-            await command.ExecuteNonQueryAsync();
-        } */
-
-        public async Task<List<Post>> GetAllPosts() 
+        public async Task<List<Post>> GetAllPosts()
         {
             using var connection = _provider.GetConnection();
             await connection.OpenAsync();
@@ -70,6 +50,31 @@ namespace Persistence.Repository
 
             return posts;
         }
+
+        public async Task SavePost(Post post)
+        {
+            using var connection = _provider.GetConnection();
+
+            await connection.OpenAsync();
+
+            var sql = """
+                INSERT INTO posts(id, author_name, content, created_at, reaction_count, complaint_count, user_id)
+                VALUES(@id, @author_name, @content, @created_at, @reaction_count, @complaint_count, @user_id)
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("id", post.Id);
+            command.Parameters.AddWithValue("author_name", post.AuthorName);
+            command.Parameters.AddWithValue("content", post.Content);
+            command.Parameters.AddWithValue("created_at",post.CreatedAt);
+            command.Parameters.AddWithValue("reaction_count", post.ReactionCount);
+            command.Parameters.AddWithValue("complaint_count", post.ComplaintCount);
+            command.Parameters.AddWithValue("user_id", post.UserId);
+
+            await command.ExecuteNonQueryAsync();
+        }
+    
     }
 }
 

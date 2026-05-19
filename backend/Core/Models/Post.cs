@@ -14,8 +14,9 @@ namespace Core.Models
         public int ReactionCount { get; private set; }
         public List<Comment> Comments { get; private set; }
         public int ComplaintCount { get; private set; }
+        public Guid UserId { get; private set; }
 
-        public Post(string authorName, string content)
+        public Post(string authorName, string content, Guid userId)
         {
             Id = Guid.NewGuid();
             this.AuthorName = authorName;
@@ -24,6 +25,7 @@ namespace Core.Models
             ReactionCount = 0;
             ComplaintCount = 0;
             Comments = new();
+            UserId = userId;
         }
         public Post() { }
 
@@ -34,5 +36,6 @@ namespace Core.Models
         public void SetDateCreatedAt(DateTime time) { CreatedAt = time; }
         public void SetReactionCount(int count) { ReactionCount = count; }
         public void SetComplaintCount(int count) { ComplaintCount = count; }
+        public void SetUserId(Guid id) { UserId = id; }
     }
 }

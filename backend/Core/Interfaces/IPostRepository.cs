@@ -9,5 +9,6 @@ namespace Persistence.Repository
     {
         Task<List<Post>> GetAllPosts();
         //Task PostPost();
+        Task SavePost(Post post);
     }
 }

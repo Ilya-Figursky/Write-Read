@@ -10,5 +10,6 @@ namespace Core.Interfaces
         Task<User> SignUp(User user);
         Task<User> SignIn(User user);
         //Task<User> GetUserLoginStatus();
+        Task<User> GetUserDataById(Guid id);
     }
 }

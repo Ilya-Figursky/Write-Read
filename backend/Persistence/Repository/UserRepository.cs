@@ -4,6 +4,7 @@ using Npgsql;
 using Persistence.Context;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Xml.Linq;
 
@@ -34,7 +35,6 @@ namespace Persistence.Repository
 
             throw new Exception("Error when \'Create new User\' request was executed");
         }
-
         public async Task<User> SignIn(User user)
         {
             using var connection = _provider.GetConnection();
@@ -53,15 +53,45 @@ namespace Persistence.Repository
 
             using var reader = await command.ExecuteReaderAsync();
 
-            await reader.ReadAsync();
+            if (!await reader.ReadAsync()) { Console.WriteLine("There is no rows was found"); }
 
             User newUser = new User();
-            newUser.SetId(reader.GetGuid(0));
+            newUser.SetId(reader.GetGuid(reader.GetOrdinal("id")));
             newUser.Name = reader.GetString(1);
             newUser.SetPassword(reader.GetString(2));
 
             return newUser;
         }
+        public async Task<User> GetUserDataById(Guid id) // if its universal method - add new sql command for geting user's posts
+        {                                                // maybe the implementaton of that method is not good idea because of the method get all user's data for one thing like 'AuthorName'. Maybe!!!
+            using var connection = _provider.GetConnection();
+
+            await connection.OpenAsync();
+
+            var sql = """
+                SELECT * FROM users
+                WHERE id = @id 
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("id", id);
+
+            using var reader = await command.ExecuteReaderAsync();
+
+            if (!await reader.ReadAsync()) { Console.WriteLine("There is no rows was found"); }
+
+            Console.WriteLine($"{id}");
+
+            User user = new User();
+
+            user.SetId(reader.GetGuid(reader.GetOrdinal("id"))); // its better solution use GetOrdnal. Remake outher mathods.
+            user.SetPassword(reader.GetString(reader.GetOrdinal("password")));
+            user.Name = reader.GetString(reader.GetOrdinal("name"));
+
+            return user;
+        }
+
 
 
         public UserRepository(DbProvider provider) { _provider = provider; }
