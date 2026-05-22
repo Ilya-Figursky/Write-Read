@@ -15,5 +15,6 @@ namespace Application.DTOs
         public List<Comment> Comments { get; set; } // maybe  List<Comment> -> List<CommentDTO>
         public int ComplaintCount { get; set; }
         public bool IsLiked { get; set; }
+        public bool IsComplaint { get; set; }
     }
 }

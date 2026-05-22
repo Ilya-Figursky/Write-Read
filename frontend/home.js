@@ -45,6 +45,12 @@ async function loadPostsByUserId()
 
             <span>${post.reactionCount}</span>
 
+            <button class = "complaintButton">
+                ${post.isComplaint ? "!" : "[!]"}
+            </button>
+
+            <button id="writeComment" lang="uk">Написати коментар</button>
+
             <hr>
         `;
 
