@@ -1,4 +1,4 @@
-async function loadPosts()
+async function loadPostsByUserId()
 {
     try
     {
@@ -31,4 +31,4 @@ async function loadPosts()
     }
 }
 
- window.onload = loadPosts;
+ window.onload = loadPostsByUserId;

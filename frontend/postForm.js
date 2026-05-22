@@ -1,8 +1,6 @@
 const sendButton = document.getElementById("sendPostButton");
 
 
-
-
 async function SendPost()
 {
     const formContent = document.getElementById("postFormInput").value;

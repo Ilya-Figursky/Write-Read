@@ -1,7 +1,10 @@
-﻿using Persistence.Context;
+﻿using Core.Models;
 using Npgsql;
+using Persistence.Context;
 using System.Data.Common;
-using Core.Models;
+using System.Reflection.Metadata;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml;
 
 namespace Persistence.Repository
 {
@@ -11,9 +14,10 @@ namespace Persistence.Repository
 
         public PostRepository(DbProvider provider) { _provider = provider; }
 
-        public async Task<List<Post>> GetAllPosts()
+        public async Task<List<Post>> GetAllPostsAsync()
         {
             using var connection = _provider.GetConnection();
+
             await connection.OpenAsync();
 
             var sql = @"
@@ -51,7 +55,42 @@ namespace Persistence.Repository
             return posts;
         }
 
-        public async Task SavePost(Post post)
+        public async Task<List<Like>> GetLikesListByIdAsync(Guid userId)
+        {
+            using var connection = _provider.GetConnection();
+
+            await connection.OpenAsync();
+
+            var sql = """
+                SELECT 
+                post_id
+                FROM likes
+                WHERE
+                user_id = @user_id
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("user_id", userId);
+
+            using var reader = await command.ExecuteReaderAsync();
+
+            List<Like> likesList = new List<Like>();
+
+            while (await reader.ReadAsync())
+            {
+                Like like = new Like();
+
+                like.userId = userId;
+                like.postId = reader.GetGuid(reader.GetOrdinal("post_id"));
+
+                likesList.Add(like);
+            }
+
+            return likesList;
+        }
+
+        public async Task SavePostAsync(Post post)
         {
             using var connection = _provider.GetConnection();
 
@@ -74,9 +113,82 @@ namespace Persistence.Repository
 
             await command.ExecuteNonQueryAsync();
         }
-    
+
+        public async Task SetLikeByPostIdANDUserIdAsync(Guid postId, Guid userId)
+        {
+            using var connection = _provider.GetConnection();
+
+            await connection.OpenAsync();
+
+            var sql = """
+                INSERT INTO likes(post_id, user_id)
+                VALUES (@post_id, @user_id)
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("post_id", postId);
+            command.Parameters.AddWithValue("user_id", userId);
+
+            await command.ExecuteNonQueryAsync();
+
+            sql = """
+                UPDATE posts
+                SET reaction_count = reaction_count + 1
+                WHERE id = @postId
+                """;
+
+            using var newCommand = new NpgsqlCommand(sql, connection);
+
+            newCommand.Parameters.AddWithValue("postId", postId);
+
+            await newCommand.ExecuteNonQueryAsync();
+        }
+
+        public async Task RemoveLikeByPostIdANDUserIdAsync(Guid postId, Guid userId)
+        {
+            using var connection = _provider.GetConnection();
+
+            await connection.OpenAsync();
+
+            var sql = """
+                DELETE FROM likes
+                WHERE post_id = @post_id
+                AND user_id = @user_id
+                """;
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("post_id", postId);
+            command.Parameters.AddWithValue("user_id", userId);
+
+            command.ExecuteNonQuery();
+
+            sql = """
+                UPDATE posts
+                SET rection_count = reaction_count - 1
+                WHERE id = @post_id
+                AND user_id = @user_id
+                """;
+
+            using var newCommand = new NpgsqlCommand(sql, connection);
+
+            newCommand.Parameters.AddWithValue("post_id", postId);
+            newCommand.Parameters.AddWithValue("user_id", userId);
+
+            await newCommand.ExecuteNonQueryAsync();
+        }
+
+        //public async Task DeletePostById(Guid postId) { }
+
+
+
+
+
+        
+
+
+
+
+     
     }
 }
-
-
-//SELECT id AS Id, post_text AS Text FROM post

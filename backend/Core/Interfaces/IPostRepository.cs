@@ -7,8 +7,10 @@ namespace Persistence.Repository
 {
     public interface IPostRepository
     {
-        Task<List<Post>> GetAllPosts();
-        //Task PostPost();
-        Task SavePost(Post post);
+        Task<List<Post>> GetAllPostsAsync();
+        Task SavePostAsync(Post post);
+        Task<List<Like>> GetLikesListByIdAsync(Guid userId);
+        Task SetLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
+        Task RemoveLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
     }
 }

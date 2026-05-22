@@ -13,6 +13,8 @@ namespace Presentation.Controllers
     {
         IUserService _userService;
 
+        public UserController(IUserService userService) { _userService = userService; }
+
         [HttpPost("signup")]
         public async Task<IActionResult> SignUp([FromBody] UserRegisterDTO userRegister)
         {
@@ -44,6 +46,14 @@ namespace Presentation.Controllers
         }
         
 
-        public UserController(IUserService userService) { _userService = userService; }
+
+
+
+
+
+
+
+
+     
     }
 }

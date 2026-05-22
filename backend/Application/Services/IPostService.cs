@@ -8,7 +8,10 @@ namespace Application.Services
 {
     public interface IPostService
     {
-        Task<List<PostDTO>> GetAllPosts();
-        Task SavePost(string textContent, Guid userId);
+        Task<List<PostDTO>> GetAllPostsAsync();
+        Task<List<PostDTO>> GetAllPostsByUserIdAsync(Guid userId);
+        Task SavePostAsync(string textContent, Guid userId);
+        Task SetLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
+        Task RemoveLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
     }
 }

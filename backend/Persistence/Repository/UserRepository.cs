@@ -14,6 +14,8 @@ namespace Persistence.Repository
     {
         private readonly DbProvider _provider;
 
+        public UserRepository(DbProvider provider) { _provider = provider; }
+
         public async Task<User> SignUp(User user)
         {
             using var connection = _provider.GetConnection();
@@ -81,8 +83,6 @@ namespace Persistence.Repository
 
             if (!await reader.ReadAsync()) { Console.WriteLine("There is no rows was found"); }
 
-            Console.WriteLine($"{id}");
-
             User user = new User();
 
             user.SetId(reader.GetGuid(reader.GetOrdinal("id"))); // its better solution use GetOrdnal. Remake outher mathods.
@@ -94,6 +94,10 @@ namespace Persistence.Repository
 
 
 
-        public UserRepository(DbProvider provider) { _provider = provider; }
+
+
+
+
+       
     }
 }

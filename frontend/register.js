@@ -74,4 +74,3 @@ async function SignIn()
 
 signUpButton.addEventListener('click', SignUp);
 signInButton.addEventListener('click', SignIn);
-//window.location.href = "page.html";
