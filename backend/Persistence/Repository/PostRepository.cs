@@ -165,7 +165,7 @@ namespace Persistence.Repository
 
             sql = """
                 UPDATE posts
-                SET rection_count = reaction_count - 1
+                SET reaction_count = reaction_count - 1
                 WHERE id = @post_id
                 AND user_id = @user_id
                 """;

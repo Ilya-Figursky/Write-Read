@@ -142,7 +142,7 @@ namespace Application.Services
 
         public async Task RemoveLikeByPostIdANDUserIdAsync(Guid postId, Guid userId)
         {
-
+            await _repository.RemoveLikeByPostIdANDUserIdAsync(postId, userId);
         }
 
         

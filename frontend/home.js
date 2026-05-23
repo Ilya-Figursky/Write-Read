@@ -61,22 +61,35 @@ async function loadPostsByUserId()
 
                 const postId = post.postId;
 
-                try
+                if(likeButton.textContent === "🤍") 
                 {
-                    const response = await fetch(`https://localhost:7109/wr/home/setlike/${postId}/${userId}`, {
-                        method: "POST"
-
-                    });
-
-                    if(!response.ok) {throw new Error("Like error");}
-
-                    if(likeButton.textContent === "🤍") {likeButton.textContent = "❤️";}
-                    else 
+                    try
                     {
-                        likeButton.textContent = "🤍";
-                    }
-                } catch(error) {console.log(error);}
+                        const response = await fetch(`https://localhost:7109/wr/home/setlike/${postId}/${userId}`, {
+                         method: "POST"
+                        });
 
+                     if(!response.ok) {throw new Error("Like error");}
+
+                     if(likeButton.textContent === "🤍") {likeButton.textContent = "❤️";}
+                     
+                     
+                    } catch(error) {console.log(error);}
+                } else if(likeButton.textContent === "❤️")
+                  {
+                    try
+                    {
+                        const response = await fetch(`https://localhost:7109/wr/home/remuvelike/${postId}/${userId}`, {
+                            method: "POST"
+                        });
+                            
+                    
+                        if(!response.ok) {throw new Error("Like error");}
+                        if(likeButton.textContent === "❤️") {likeButton.textContent = "🤍";}
+                    } catch(error){console.log(error);}
+
+                     
+                  } 
                 
             });
         });

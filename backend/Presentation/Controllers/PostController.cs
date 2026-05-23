@@ -50,6 +50,8 @@ namespace Presentation.Controllers
         [HttpPost("remuvelike/{postId}/{userId}")]
         public async Task<IActionResult> RemoveLikeByPostIdANDUserIdAsync([FromRoute] Guid postId, [FromRoute] Guid userId)
         {
+            await _postService.RemoveLikeByPostIdANDUserIdAsync(postId, userId);
+
             return Ok();
         }
 
