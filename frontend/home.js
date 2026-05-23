@@ -39,9 +39,7 @@ async function loadPostsByUserId()
         postBlok.innerHTML = `
             <p>${post.content}</p>
 
-            <button class = "likeButton" data-post-id="${post.postId}">
-                ${post.isliked ? "❤️" : "🤍"}
-            </button>
+            <button class = "likeButton" data-post-id="${post.postId}">${post.isLiked ? "❤️" : "🤍"}</button>
 
             <span>${post.reactionCount}</span>
 
@@ -52,13 +50,14 @@ async function loadPostsByUserId()
             <button id="writeComment" lang="uk">Написати коментар</button>
 
             <hr>
-        `;
+            `;
 
             postFeed.appendChild(postBlok);
 
             const likeButton = postBlok.querySelector(".likeButton");
 
-            likeButton.addEventListener("click", async () => {
+            //Set like
+            likeButton.addEventListener("click", async () => {  
 
                 const postId = post.postId;
 
