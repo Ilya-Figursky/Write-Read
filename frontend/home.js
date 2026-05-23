@@ -56,11 +56,15 @@ async function loadPostsByUserId()
 
             const likeButton = postBlok.querySelector(".likeButton");
 
-            //Set like
+
+
+
+            // like logic
             likeButton.addEventListener("click", async () => {  
 
                 const postId = post.postId;
 
+                //set like
                 if(likeButton.textContent === "🤍") 
                 {
                     try
@@ -75,7 +79,7 @@ async function loadPostsByUserId()
                      
                      
                     } catch(error) {console.log(error);}
-                } else if(likeButton.textContent === "❤️")
+                } else if(likeButton.textContent === "❤️")// remove like
                   {
                     try
                     {
