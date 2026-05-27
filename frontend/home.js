@@ -47,7 +47,7 @@ async function loadPostsByUserId()
                 ${post.isComplaint ? "!" : "[!]"}
             </button>
 
-            <button id="writeComment" lang="uk">Написати коментар</button>
+            <button id="writeCommentButton" lang="uk">Написати коментар</button>
 
             <hr>
             `;
@@ -55,8 +55,6 @@ async function loadPostsByUserId()
             postFeed.appendChild(postBlok);
 
             const likeButton = postBlok.querySelector(".likeButton");
-
-
 
 
             // like logic
@@ -96,6 +94,11 @@ async function loadPostsByUserId()
                   } 
                 
             });
+
+            //Add comment
+            const writeCommentButton = postBlok.querySelector("#writeCommentButton");
+
+            writeCommentButton.addEventListener("click", async () => {window.location.href = "commentForm.html"});
         });
     } catch(error)
     {   

@@ -42,7 +42,7 @@ namespace Application.Services
         {
             List<Post> posts = await _repository.GetAllPostsAsync();
 
-            List<Like> likesList = await _repository.GetLikesListByIdAsync(userId);
+            List<PostLike> likesList = await _repository.GetLikesListByIdAsync(userId);
 
             List<PostDTO> postsDTO = new List<PostDTO>();
 
@@ -145,7 +145,10 @@ namespace Application.Services
             await _repository.RemoveLikeByPostIdANDUserIdAsync(postId, userId);
         }
 
-        
+        public async Task SaveCommentAsync(Guid postId, Guid userId, string textContent)
+        {
+
+        }
 
 
 

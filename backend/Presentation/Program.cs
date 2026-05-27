@@ -1,5 +1,6 @@
 using Application.Services;
 using Core.Interfaces;
+using Persistence;
 using Persistence.Context;
 using Persistence.Repository;
 
@@ -26,6 +27,7 @@ namespace Presentation
             builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IUserReposytory, UserRepository>();
+            builder.Services.AddScoped<IPersistanseCore, PersistanceCore>();
 
             builder.Services.AddCors(options =>
             {

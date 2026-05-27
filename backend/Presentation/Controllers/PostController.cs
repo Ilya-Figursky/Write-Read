@@ -1,5 +1,6 @@
 ﻿using Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using Persistence.Repository;
 
 namespace Presentation.Controllers
@@ -55,7 +56,11 @@ namespace Presentation.Controllers
             return Ok();
         }
 
+        [HttpPost("saveComment/{postId}/{userId}")]
+        public async Task SaveCommentAsync([FromRoute] Guid postId, [FromRoute] Guid userId, [FromBody] string textContent)
+        {
 
+        }
 
 
 
