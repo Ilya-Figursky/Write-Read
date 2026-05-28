@@ -58,13 +58,12 @@ namespace Persistence.Repository
                 post.AuthorName = currentUser.Name;
                 post.Content = reader.GetString(2);
                 post.SetDateCreatedAt(reader.GetDateTime(3));
-                //post.SetReactionCount(reader.GetInt32(4));
-                //post.SetComplaintCount(reader.GetInt32(5));
 
                 posts.Add(post);
             }
 
             await reader.CloseAsync();
+
             //Add likes and complaints count
             for (int i = 0; i < posts.Count; i++)
             {
@@ -220,34 +219,8 @@ namespace Persistence.Repository
         }
 
 
-        //remake it
-        public async Task SaveCommentAsync(Guid postId, Guid userId, string textContent)
-        {
-            using var connection = _provider.GetConnection();
 
-            await connection.OpenAsync();
-
-            var sql = """
-                INSERT INTO comments(author_name, content, created_at, reaction_count, complaint_count, post_id, user_id)
-                VALUES(@author_name, @content, @created_at, @reaction_count, @complaint_count, @post_id, @user_id)
-                """;
-
-            using var command = new NpgsqlCommand(sql, connection);
-
-            User user = await _persistanseCore.GetUserDataById(userId);
-            Comment comment = new(user.Name, textContent, userId);
-
-            command.Parameters.AddWithValue("author_name", comment.AuthorName);
-            command.Parameters.AddWithValue("content", comment.Content);
-            command.Parameters.AddWithValue("created_at",comment.CreatedAt);
-            command.Parameters.AddWithValue("reaction_count", comment.ReactionCount);
-            command.Parameters.AddWithValue("complaint_count", comment.ReactionCount);
-            command.Parameters.AddWithValue("post_id", comment.Id);
-            command.Parameters.AddWithValue("user_id", comment.UserId);
-
-            await command.ExecuteNonQueryAsync();
-        }
-
+        
 
 
 

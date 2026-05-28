@@ -9,7 +9,6 @@ namespace Persistence.Repository
     {
         Task<List<Post>> GetAllPostsAsync();
         Task SavePostAsync(Post post);
-        Task SaveCommentAsync(Guid postId, Guid userId, string textContent);
         Task<List<PostLike>> GetLikesListByIdAsync(Guid userId);
         Task SetLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
         Task RemoveLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);

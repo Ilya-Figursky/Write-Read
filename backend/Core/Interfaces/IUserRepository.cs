@@ -5,7 +5,7 @@ using Core.Models;
 
 namespace Core.Interfaces
 {
-    public interface IUserReposytory
+    public interface IUserRepository
     {
         Task<User> SignUp(User user);
         Task<User> SignIn(User user);

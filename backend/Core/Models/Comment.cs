@@ -11,21 +11,22 @@ namespace Core.Models
         public string AuthorName { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; private set; }
-        public int ReactionCount { get; private set; }// delete
+        public int ReactionCount { get; private set; }
         public List<Comment> Comments { get; private set; }
         public int ComplaintCount { get; private set; }
         public Guid UserId { get; private set; }
+        public Guid PostId { get; private set; }
 
-        public Comment(string authorName, string content, Guid userId)
+        public Comment(string content, Guid userId, Guid postId)
         {
             Id = Guid.NewGuid();
-            this.AuthorName = authorName;
             this.Content = content;
             CreatedAt = DateTime.Now;
             ReactionCount = 0;
             ComplaintCount = 0;
             Comments = new();
             UserId = userId;
+            PostId = postId;
         }
 
         public void AddReaction() { ReactionCount++; }

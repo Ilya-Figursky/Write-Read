@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace Persistence.Repository
 {
-    public class UserRepository: IUserReposytory
+    public class UserRepository: IUserRepository
     {
         private readonly DbProvider _provider;
         private IPersistanseCore _persistanseCore;

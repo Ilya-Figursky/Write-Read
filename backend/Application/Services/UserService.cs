@@ -9,9 +9,9 @@ namespace Application.Services
 {
     public class UserService: IUserService
     {
-        IUserReposytory _repository;
+        IUserRepository _repository;
 
-        public UserService( IUserReposytory reposytory) { _repository = reposytory; }
+        public UserService( IUserRepository reposytory) { _repository = reposytory; }
 
         public async Task<User> SignUp(UserRegisterDTO userRegister)
         {

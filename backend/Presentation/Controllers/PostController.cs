@@ -56,12 +56,6 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        [HttpPost("saveComment/{postId}/{userId}")]
-        public async Task SaveCommentAsync([FromRoute] Guid postId, [FromRoute] Guid userId, [FromBody] string textContent)
-        {
-
-        }
-
 
 
 

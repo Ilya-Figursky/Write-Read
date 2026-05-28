@@ -34,22 +34,23 @@ async function loadPostsByUserId()
 
         posts.forEach( post => {
             
-        const postBlok = document.createElement("div");
+            const postBlok = document.createElement("div");
 
-        postBlok.innerHTML = `
-            <p>${post.content}</p>
+            postBlok.innerHTML = `
+                <p>${post.content}</p>
 
-            <button class = "likeButton" data-post-id="${post.postId}">${post.isLiked ? "❤️" : "🤍"}</button>
+                <button class = "likeButton" data-post-id="${post.postId}">${post.isLiked ? "❤️" : "🤍"}</button>
 
-            <span>${post.reactionCount}</span>
+                <span>${post.reactionCount}</span>
+ 
+                <button class = "complaintButton">
+                    ${post.isComplaint ? "!" : "[!]"}
+                </button>
 
-            <button class = "complaintButton">
-                ${post.isComplaint ? "!" : "[!]"}
-            </button>
+                <button id="writeCommentButton" lang="uk">Написати коментар</button>
+                
 
-            <button id="writeCommentButton" lang="uk">Написати коментар</button>
-
-            <hr>
+                <hr>
             `;
 
             postFeed.appendChild(postBlok);
@@ -98,7 +99,13 @@ async function loadPostsByUserId()
             //Add comment
             const writeCommentButton = postBlok.querySelector("#writeCommentButton");
 
-            writeCommentButton.addEventListener("click", async () => {window.location.href = "commentForm.html"});
+            writeCommentButton.addEventListener("click", async () => {window.location.href = `commentForm.html?postId=${post.postId}`});
+            
+            
+            //const showCommentsButton = postBlok.querySelector("#showCommentsButton");
+
+            //showCommentsButton.addEventListener("click", async () =>{win});
+       
         });
     } catch(error)
     {   

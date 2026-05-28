@@ -11,9 +11,9 @@ namespace Application.Services
     public class PostService : IPostService
     {
         IPostRepository _repository;
-        IUserReposytory _userRepository;
+        IUserRepository _userRepository;
 
-        public PostService(IPostRepository postRepository, IUserReposytory userReposytory) { _repository = postRepository; _userRepository = userReposytory; }
+        public PostService(IPostRepository postRepository, IUserRepository userReposytory) { _repository = postRepository; _userRepository = userReposytory; }
 
         public async Task<List<PostDTO>> GetAllPostsAsync() 
         { 
@@ -145,10 +145,6 @@ namespace Application.Services
             await _repository.RemoveLikeByPostIdANDUserIdAsync(postId, userId);
         }
 
-        public async Task SaveCommentAsync(Guid postId, Guid userId, string textContent)
-        {
-
-        }
 
 
 
