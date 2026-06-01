@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Core.Models
@@ -28,10 +29,14 @@ namespace Core.Models
             UserId = userId;
             PostId = postId;
         }
+        public Comment() { }
 
-        public void AddReaction() { ReactionCount++; }
-        public void AddComplaint() { ComplaintCount++; }
+        public void SetCommentId(Guid id) { Id = id; }
+        public void SetCreatedAtTime(DateTime time) { CreatedAt = time; }
+        public void SetReactionCount(int count) { ReactionCount = count; }
+        public void SetComplaintCount() { ComplaintCount++; }
         public void AddComent(Comment comment) { Comments.Add(comment); }
         public void SetUserId(Guid id) => UserId = id;
+        public void SetPostId(Guid id) => PostId = id;
     }
 }

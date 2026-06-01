@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>W&R</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>W&R</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-<body>
+    <body>
 
-    <div id="topBar">
+         <div id="topBar">
 
-        <div id="profileButton">
-            <button class="avatarButton" onclick="location.href='profile.html'"> 
-                <img src="Profile pictures\1.StandartEmptyProfilePicture.png" alt="User avatar">
-            </button>
-            <span id="userName" class="userName">User</span>
+            <div id="profileButton">
+                <button class="avatarButton" onclick="location.href='profile.html'"> 
+                    <img src="Profile pictures\1.StandartEmptyProfilePicture.png" alt="User avatar">
+                </button>
+                <span id="userName" class="userName">User</span>
+            </div>
+
+            <div id="writePostButtonDiv">
+                <button lang="uk" id="writePostButton" onclick="location.href='postForm.html'">
+                    Написати пост
+                </button>
+            </div>
+
         </div>
 
-        <div id="writePostButtonDiv">
-            <button lang="uk" id="writePostButton" onclick="location.href='postForm.html'">
-                Написати пост
-            </button>
+        <div id="postFeed">
+            Download...
         </div>
 
-    </div>
+        <script src="home.js"></script>
 
-    <div id="postFeed">
-        Download...
-    </div>
-
-    <script src="home.js"></script>
-
-</body>
+    </body>
 </html>

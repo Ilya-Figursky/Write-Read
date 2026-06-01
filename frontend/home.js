@@ -2,7 +2,7 @@
 const userName = document.getElementById("userName");
 const userNameFromStorage = sessionStorage.getItem("userName");
 
-userName.textContent = userNameFromStorage;
+userName.textContent = userNameFromStorage;//set to show user's name on page
 
 const userId = sessionStorage.getItem("userId");
 
@@ -48,7 +48,7 @@ async function loadPostsByUserId()
                 </button>
 
                 <button id="writeCommentButton" lang="uk">Написати коментар</button>
-                
+                <button id="showCommentsButton" lang="uk">Переглянути коментарі</button>
 
                 <hr>
             `;
@@ -101,18 +101,12 @@ async function loadPostsByUserId()
 
             writeCommentButton.addEventListener("click", async () => {window.location.href = `commentForm.html?postId=${post.postId}`});
             
+            const showCommentsButton = postBlok.querySelector("#showCommentsButton");
             
-            //const showCommentsButton = postBlok.querySelector("#showCommentsButton");
-
-            //showCommentsButton.addEventListener("click", async () =>{win});
+            showCommentsButton.addEventListener("click", async () => {window.location.href = `comments.html?postId=${post.postId}`});
        
         });
-    } catch(error)
-    {   
-        console.log(error);
-
-        document.getElementById("postFeed").innerHTML = "The \"posts\" not found"
-    }
+    } catch(error) {console.log(error);}
 }
 
 

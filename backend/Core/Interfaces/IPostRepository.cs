@@ -9,7 +9,7 @@ namespace Persistence.Repository
     {
         Task<List<Post>> GetAllPostsAsync();
         Task SavePostAsync(Post post);
-        Task<List<PostLike>> GetLikesListByIdAsync(Guid userId);
+        Task<List<PostLike>> GetPostLikesListByIdAsync(Guid userId);
         Task SetLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
         Task RemoveLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
     }

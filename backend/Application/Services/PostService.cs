@@ -42,7 +42,7 @@ namespace Application.Services
         {
             List<Post> posts = await _repository.GetAllPostsAsync();
 
-            List<PostLike> likesList = await _repository.GetLikesListByIdAsync(userId);
+            List<PostLike> likesList = await _repository.GetPostLikesListByIdAsync(userId);
 
             List<PostDTO> postsDTO = new List<PostDTO>();
 
@@ -74,57 +74,6 @@ namespace Application.Services
 
 
             return postsDTO;
-            { /* if (likesList.Count != 0)
-                {
-                    if (i < likesList.Count)
-                    {
-                        postDTO.AuthorName = posts[i].AuthorName;
-                        postDTO.Comments = posts[i].Comments;
-                        postDTO.Content = posts[i].Content;
-                        postDTO.CreatedAt = posts[i].CreatedAt;
-                        postDTO.ComplaintCount = posts[i].ComplaintCount;
-                        postDTO.ReactionCount = posts[i].ReactionCount;
-                        postDTO.PostId = posts[i].Id;
-
-                        postDTO.IsLiked = false;
-
-                        postsDTO.Add(postDTO);
-                    }
-                    else
-                    {
-
-                        if (posts[i].Id == likesList[i].postId)
-                        {
-
-                            postDTO.AuthorName = posts[i].AuthorName;
-                            postDTO.Comments = posts[i].Comments;
-                            postDTO.Content = posts[i].Content;
-                            postDTO.CreatedAt = posts[i].CreatedAt;
-                            postDTO.ComplaintCount = posts[i].ComplaintCount;
-                            postDTO.ReactionCount = posts[i].ReactionCount;
-                            postDTO.PostId = posts[i].Id;
-
-                            postDTO.IsLiked = true;
-
-                            postsDTO.Add(postDTO);
-                        }
-                    }
-                } 
-                else if (likesList.Count == 0)
-                {
-                    postDTO.AuthorName = posts[i].AuthorName;
-                    postDTO.Comments = posts[i].Comments;
-                    postDTO.Content = posts[i].Content;
-                    postDTO.CreatedAt = posts[i].CreatedAt;
-                    postDTO.ComplaintCount = posts[i].ComplaintCount;
-                    postDTO.ReactionCount = posts[i].ReactionCount;
-                    postDTO.PostId = posts[i].Id;
-
-                    postDTO.IsLiked = false;
-
-                    postsDTO.Add(postDTO);
-                }*/
-            }
         }
         public async Task SavePostAsync(string textContent, Guid userId)
         {

@@ -15,7 +15,7 @@ namespace Persistence.Repository
     {
         private readonly DbProvider _provider;
         private readonly IPersistanseCore _persistanseCore;
-        public PostRepository(DbProvider provider, IPersistanseCore persistacseCore) { _provider = provider; _persistanseCore = persistacseCore; }
+        public PostRepository(DbProvider provider, IPersistanseCore persistanceCore) { _provider = provider; _persistanseCore = persistanceCore; }
 
         public async Task<List<Post>> GetAllPostsAsync()
         {
@@ -111,7 +111,7 @@ namespace Persistence.Repository
             return posts;
         }
 
-        public async Task<List<PostLike>> GetLikesListByIdAsync(Guid userId)
+        public async Task<List<PostLike>> GetPostLikesListByIdAsync(Guid userId)
         {
             using var connection = _provider.GetConnection();
 
