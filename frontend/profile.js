@@ -1,9 +1,4 @@
 
-const userName = document.getElementById("userName");
-const userNameFromStorage = sessionStorage.getItem("userName");
-
-userName.textContent = userNameFromStorage;//set to show user's name on page
-
 const userId = sessionStorage.getItem("userId");
 
 function checkAuth()
@@ -22,7 +17,7 @@ async function loadPostsByUserId()
 {
     try
     {
-        const response = await fetch(`https://localhost:7109/wr/home/${userId}`);
+        const response = await fetch(`https://localhost:7109/wr/home/usersposts/${userId}`);
         
         if(!response.ok) throw new Error("Server error");
         
@@ -44,11 +39,12 @@ async function loadPostsByUserId()
                 <span>${post.reactionCount}</span>
  
                 <button class = "complaintButton">
-                    ${post.isComplaint ? "!" : "[!]"}
+                    ${post.isComplaint ? "[!]" : "[]"}
                 </button>
 
                 <button id="writeCommentButton" lang="uk">Написати коментар</button>
                 <button id="showCommentsButton" lang="uk">Переглянути коментарі</button>
+                
 
                 <hr>
             `;
@@ -104,10 +100,6 @@ async function loadPostsByUserId()
             const showCommentsButton = postBlok.querySelector("#showCommentsButton");
             
             showCommentsButton.addEventListener("click", async () => {window.location.href = `comments.html?postId=${post.postId}`});
-       
-            const complaintButton = postBlok.querySelector(".complaintButton");
-
-            complaintButton.addEventListener("click", async () => {window.location.href = `complaintForm.html?postId=${post.postId}`})
         });
     } catch(error) {console.log(error);}
 }

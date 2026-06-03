@@ -29,9 +29,9 @@ namespace Core.Models
         }
         public Post() { }
 
-        public void AddReaction() { ReactionCount++; }
-        public void AddComplaint() { ComplaintCount++; }
-        public void AddComent(Comment comment) { Comments.Add(comment); }
+        //public void AddReaction() { ReactionCount++; }
+        //public void AddComplaint() { ComplaintCount++; }
+        //public void AddComent(Comment comment) { Comments.Add(comment); }
         public void SetId(Guid id) { Id = id; }
         public void SetDateCreatedAt(DateTime time) { CreatedAt = time; }
         public void SetReactionCount(int count) { ReactionCount = count; }

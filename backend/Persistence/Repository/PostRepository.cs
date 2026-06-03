@@ -218,11 +218,89 @@ namespace Persistence.Repository
             
         }
 
+        public async Task<int> DeletePost(Guid postId)
+        {
+            using var connection = _provider.GetConnection();
 
+            await connection.OpenAsync();
 
-        
+            var sql = """
+                DELETE FROM posts
+                WHERE id = @postId
+                """;
 
+            using var command = new NpgsqlCommand(sql, connection);
 
+            command.Parameters.AddWithValue("postId", postId);
+
+            int deletedRows = await command.ExecuteNonQueryAsync();
+
+            return deletedRows;
+        }
+
+        public async Task<List<Post>> GetAllPostByUserIdAsync(Guid userId)
+        {
+            using var connection = _provider.GetConnection();
+
+            await connection.OpenAsync();
+
+            var sql = """
+                SELECT 
+                    id, 
+                    user_id,
+                    content,
+                    created_at
+                    FROM posts
+                    WHERE user_id = @userId
+                    ORDER BY created_at DESC
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("userId", userId);
+
+            using var reader = await command.ExecuteReaderAsync();
+
+            List<Post> posts = new();
+
+            while (await reader.ReadAsync())
+            {
+                Post post = new Post();
+
+                User currentUser = await _persistanseCore.GetUserDataById(userId);
+
+                post.SetId(reader.GetGuid(0));
+                post.SetUserId(reader.GetGuid(1));
+                post.AuthorName = currentUser.Name;
+                post.Content = reader.GetString(2);
+                post.SetDateCreatedAt(reader.GetDateTime(3));
+
+                posts.Add(post);
+            }
+
+            return posts;
+        }
+
+        public async Task SetComplaint(Complaint complaint)
+        {
+            using var connection = _provider.GetConnection();
+
+            await connection.OpenAsync();
+
+            var sql = """
+                INSERT INTO complaints(id, reason, user_id, post_id)
+                VALUES(@id, @reason, @user_id, @post_id)
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("id", complaint.ComplaintId);
+            command.Parameters.AddWithValue("reason", complaint.Reason);
+            command.Parameters.AddWithValue("user_id", complaint.UserId);
+            command.Parameters.AddWithValue("post_id", complaint.PostId);
+
+            await command.ExecuteNonQueryAsync();
+        }
 
 
 

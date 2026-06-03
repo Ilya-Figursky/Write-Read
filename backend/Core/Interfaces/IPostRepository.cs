@@ -12,5 +12,8 @@ namespace Persistence.Repository
         Task<List<PostLike>> GetPostLikesListByIdAsync(Guid userId);
         Task SetLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
         Task RemoveLikeByPostIdANDUserIdAsync(Guid postId, Guid userId);
+        Task<int> DeletePost(Guid postId);
+        Task<List<Post>> GetAllPostByUserIdAsync(Guid userId);
+        Task SetComplaint(Complaint complaint);
     }
 }

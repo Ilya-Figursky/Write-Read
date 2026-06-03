@@ -31,9 +31,9 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetAllPostsByUserId([FromRoute] Guid userId)
+        public async Task<IActionResult> GetAllPostsAsync([FromRoute] Guid userId)
         {
-            var posts = await _postService.GetAllPostsByUserIdAsync(userId);
+            var posts = await _postService.GetAllPostsAsync(userId);
 
             if (posts == null) return NotFound();
 
@@ -56,10 +56,27 @@ namespace Presentation.Controllers
             return Ok();
         }
 
+        [HttpPost("deletePost/{postId}")]
+        public async Task<IActionResult> DeletePost([FromRoute]Guid postId)
+        {
+            await _postService.DeletePost(postId);
+            return Ok();
+        }
 
+        [HttpGet("usersposts/{userId}")]
+        public async Task<IActionResult> GetAllPostByUserIdAsync([FromRoute] Guid userId)
+        {
+            var posts = await _postService.GetAllPostByUserIdAsync(userId);
+            
+            return Ok(posts);
+        }
 
-
-
+        [HttpPost("complaint/{userId}/{postId}")]
+        public async Task<IActionResult> SetComplaint([FromBody]string reason, [FromRoute] Guid userId, [FromRoute] Guid postId)
+        {
+            await _postService.SetComplaint(reason, userId, postId);
+            return Ok();
+        }
 
         
     }

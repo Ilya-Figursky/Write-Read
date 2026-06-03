@@ -5,6 +5,7 @@ using Persistence.Repository;
 using Core.Models;
 using Application.DTOs;
 using Core.Interfaces;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Application.Services
 {
@@ -38,7 +39,7 @@ namespace Application.Services
             }
             return postsDTO;
         }
-        public async Task<List<PostDTO>> GetAllPostsByUserIdAsync(Guid userId)
+        public async Task<List<PostDTO>> GetAllPostsAsync(Guid userId)
         {
             List<Post> posts = await _repository.GetAllPostsAsync();
 
@@ -94,11 +95,49 @@ namespace Application.Services
             await _repository.RemoveLikeByPostIdANDUserIdAsync(postId, userId);
         }
 
+        public async Task DeletePost(Guid postId)
+        {
+            int deletedRows = await _repository.DeletePost(postId);
 
+            Response response;
 
+            if (deletedRows == 1) { response = new Response("Successful"); }
+            else
+            {
+                throw new ArgumentException("Exception in PostService: deletedRows: ", nameof(deletedRows));
+            }
+        }
 
+        public async Task<List<PostDTO>> GetAllPostByUserIdAsync(Guid userId)
+        {
+            List<Post> posts = new();
 
+            posts = await _repository.GetAllPostByUserIdAsync(userId);
 
+            List<PostDTO> postsDTO = new();
+
+            foreach (Post item in posts)
+            {
+                PostDTO postDTO = new PostDTO();
+
+                postDTO.AuthorName = item.AuthorName;
+                postDTO.Comments = item.Comments;
+                postDTO.Content = item.Content;
+                postDTO.CreatedAt = item.CreatedAt;
+                postDTO.ComplaintCount = item.ComplaintCount;
+                postDTO.ReactionCount = item.ReactionCount;
+
+                postsDTO.Add(postDTO);
+            }
+            return postsDTO;
+        }
+
+        public async Task SetComplaint(string reason, Guid userId, Guid postId)
+        {
+            Complaint complaint = new Complaint(reason, userId, postId);
+
+            await _repository.SetComplaint(complaint);
+        }
 
     }
 }

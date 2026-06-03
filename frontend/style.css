@@ -97,3 +97,9 @@
 }
 
 
+.button-container {
+    display: flex;
+    flex-direction: column; /* Выстраивает элементы в колонку */
+    gap: 10px;              /* Добавляет расстояние между кнопками */
+    align-items: flex-start; /* Прижимает кнопки к левому краю */
+}
