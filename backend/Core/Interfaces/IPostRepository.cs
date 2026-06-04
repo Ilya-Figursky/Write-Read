@@ -15,5 +15,6 @@ namespace Persistence.Repository
         Task<int> DeletePost(Guid postId);
         Task<List<Post>> GetAllPostByUserIdAsync(Guid userId);
         Task SetComplaint(Complaint complaint);
+        Task<List<(Post post, string reason)>> GetAllPostsWithComplaints();
     }
 }

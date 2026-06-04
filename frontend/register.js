@@ -70,6 +70,11 @@ async function SignIn()
         alert("Sign up failed");
     }
     
+
+    if(login == "admin" && password == "admin123")
+    {
+        window.location.href = "admin.html";
+    }
 }
 
 signUpButton.addEventListener('click', SignUp);

@@ -53,7 +53,7 @@ namespace Persistence.Repository
 
                 ids.Add((userId, postId));
                 
-                post.SetId(reader.GetGuid(0));
+                post.SetPostId(reader.GetGuid(0));
                 post.SetUserId(reader.GetGuid(1));
                 post.AuthorName = currentUser.Name;
                 post.Content = reader.GetString(2);
@@ -269,7 +269,7 @@ namespace Persistence.Repository
 
                 User currentUser = await _persistanseCore.GetUserDataById(userId);
 
-                post.SetId(reader.GetGuid(0));
+                post.SetPostId(reader.GetGuid(0));
                 post.SetUserId(reader.GetGuid(1));
                 post.AuthorName = currentUser.Name;
                 post.Content = reader.GetString(2);
@@ -302,7 +302,45 @@ namespace Persistence.Repository
             await command.ExecuteNonQueryAsync();
         }
 
+        public async Task<List<(Post post, string reason)>> GetAllPostsWithComplaints()
+        {
+            using var connection = _provider.GetConnection();
+            
+            await connection.OpenAsync();
 
+            var sql = """
+                SELECT 
+                posts.id,
+                posts.content,
+                posts.created_at,
+                posts.user_id,
+                complaints.reason
+                FROM posts
+                INNER JOIN complaints ON posts.id = complaints.post_id
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            using var reader = await command.ExecuteReaderAsync();
+
+            List<(Post post, string reason)> complaintList = new List<(Post post, string reason)>();
+
+            while (await reader.ReadAsync())
+            {
+                string reason = reader.GetString(reader.GetOrdinal("reason"));
+
+                Post post = new Post();
+
+                post.SetPostId(reader.GetGuid(reader.GetOrdinal("id")));
+                post.Content = reader.GetString(reader.GetOrdinal("content"));
+                post.SetDateCreatedAt(reader.GetDateTime(reader.GetOrdinal("created_at")));
+                post.SetUserId(reader.GetGuid(reader.GetOrdinal("user_id")));
+
+                complaintList.Add((post, reason));
+            }
+
+            return complaintList;
+        }
 
 
 

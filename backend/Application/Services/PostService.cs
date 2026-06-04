@@ -139,5 +139,47 @@ namespace Application.Services
             await _repository.SetComplaint(complaint);
         }
 
+        public async Task<List<PostWithComplaintDTO>> GetAllPostsWithComplaints()
+        {
+            List<(Post post, string reason)> complaintList = await _repository.GetAllPostsWithComplaints();
+            List<PostWithComplaintDTO> postsWithComplaintsList = new List<PostWithComplaintDTO>();
+
+            foreach(var item in complaintList)
+            {
+                PostWithComplaintDTO postCDTO = new PostWithComplaintDTO();
+
+                postCDTO.UserId = item.post.UserId;
+                postCDTO.PostId = item.post.Id;
+                postCDTO.Content = item.post.Content;
+                postCDTO.CreatedAt = item.post.CreatedAt;
+                postCDTO.Reason = item.reason;
+
+                postsWithComplaintsList.Add(postCDTO);
+            }
+
+            List<PostWithComplaintDTO> newPostsWithComplaintsList = new List<PostWithComplaintDTO>();
+
+            for (int i = 0; i < postsWithComplaintsList.Count; i++)
+            {
+                Guid correntPostId = postsWithComplaintsList[i].PostId;
+
+                if (postsWithComplaintsList[i].PostId == postsWithComplaintsList[i + 1].PostId)
+                {
+                    newPostsWithComplaintsList.Add(postsWithComplaintsList[i]);
+
+                    postsWithComplaintsList.RemoveAll(p => p.PostId == correntPostId);
+
+                    i = 0;
+                }
+
+            }
+
+            postsWithComplaintsList = newPostsWithComplaintsList;
+
+            return postsWithComplaintsList;
+        }
+
+        
+
     }
 }

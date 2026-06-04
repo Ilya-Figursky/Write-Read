@@ -1,4 +1,5 @@
-﻿using Application.Services;
+﻿using Application.DTOs;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Persistence.Repository;
@@ -57,7 +58,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("deletePost/{postId}")]
-        public async Task<IActionResult> DeletePost([FromRoute]Guid postId)
+        public async Task<IActionResult> DeletePost([FromRoute] Guid postId)
         {
             await _postService.DeletePost(postId);
             return Ok();
@@ -67,17 +68,23 @@ namespace Presentation.Controllers
         public async Task<IActionResult> GetAllPostByUserIdAsync([FromRoute] Guid userId)
         {
             var posts = await _postService.GetAllPostByUserIdAsync(userId);
-            
+
             return Ok(posts);
         }
 
         [HttpPost("complaint/{userId}/{postId}")]
-        public async Task<IActionResult> SetComplaint([FromBody]string reason, [FromRoute] Guid userId, [FromRoute] Guid postId)
+        public async Task<IActionResult> SetComplaint([FromBody] string reason, [FromRoute] Guid userId, [FromRoute] Guid postId)
         {
             await _postService.SetComplaint(reason, userId, postId);
             return Ok();
         }
 
+        [HttpGet("admin/postsWithComplaints")]
+        public async Task<IActionResult> GetAllPostsWithComplaints() 
+        {
+            var posts = await _postService.GetAllPostsWithComplaints();
+            return Ok(posts);
+        }
         
     }
 }

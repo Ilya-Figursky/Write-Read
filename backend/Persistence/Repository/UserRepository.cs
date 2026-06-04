@@ -24,11 +24,11 @@ namespace Persistence.Repository
             await connection.OpenAsync();
 
             var sql = @"INSERT INTO users (id, name, password)
-                        VALUES(@Id, @Name, @Password)";
+                        VALUES(@PostId, @Name, @Password)";
 
             using var command = new NpgsqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("Id", user.Id);
+            command.Parameters.AddWithValue("PostId", user.Id);
             command.Parameters.AddWithValue("Name", user.Name);
             command.Parameters.AddWithValue("Password", user.Password);
 
