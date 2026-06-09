@@ -38,10 +38,15 @@ async function loadPostsByUserId()
 
             postBlok.innerHTML = `
                 <p>${post.content}</p>
+                <p></p>
+
+                <p lang="uk">Причина скарги: ${post.reason}</p>
 
                 <button id="showCommentsButton" lang="uk">Переглянути коментарі</button>
                 <button id="deletePostButton" lang="uk">Видалити</button>
                 <button id="calncelComplaintButton" land="ud">Відхилити скаргу</button>
+
+                
 
                 <hr>
             `;
