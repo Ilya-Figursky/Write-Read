@@ -44,7 +44,7 @@ async function loadPostsByUserId()
 
                 <button id="writeCommentButton" lang="uk">Написати коментар</button>
                 <button id="showCommentsButton" lang="uk">Переглянути коментарі</button>
-                
+                <button id="deletePostButton" lang="uk">Видалити</button>
 
                 <hr>
             `;
@@ -100,6 +100,24 @@ async function loadPostsByUserId()
             const showCommentsButton = postBlok.querySelector("#showCommentsButton");
             
             showCommentsButton.addEventListener("click", async () => {window.location.href = `comments.html?postId=${post.postId}`});
+       
+            const deletePostButton = postBlok.querySelector("#deletePostButton");
+
+            deletePostButton.addEventListener("click", async () => {
+
+                const postId = post.postId;
+                try
+                {
+                const response = await fetch(`https://localhost:7109/wr/home/deletePost/${postId}`,{method: "DELETE" });
+
+                if(!response.ok) {throw new Error("Like error");}
+
+                if(response.ok){location.reload(true);}
+
+                }catch(error){console.log(error);}
+            });
+       
+       
         });
     } catch(error) {console.log(error);}
 }

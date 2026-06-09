@@ -57,8 +57,8 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        [HttpPost("deletePost/{postId}")]
-        public async Task<IActionResult> DeletePost([FromRoute] Guid postId)
+        [HttpDelete("deletePost/{postId}")]
+        public async Task<IActionResult> DeletePostAsync([FromRoute] Guid postId)
         {
             await _postService.DeletePost(postId);
             return Ok();
@@ -85,6 +85,14 @@ namespace Presentation.Controllers
             var posts = await _postService.GetAllPostsWithComplaints();
             return Ok(posts);
         }
-        
+
+        [HttpDelete("admin/cancelComplaint/{postId}")]
+        public async Task<IActionResult> CancelComplaintAsync([FromRoute] Guid postId)
+        {
+            await _postService.CancelComplaintAsync(postId);
+
+            return Ok();
+        }
+
     }
 }

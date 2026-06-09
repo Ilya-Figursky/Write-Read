@@ -3,8 +3,15 @@ const sendButton = document.getElementById("sendPostButton");
 
 async function SendComment()
 {
-    const formContent = document.getElementById("postFormInput").value;
+    const inputElement = document.getElementById("postFormInput");
+    const formContent = inputElement.value;
     const userId = sessionStorage.getItem("userId");
+
+    if(formContent == "")
+    {
+        alert("Field is empty");
+        return;
+    }
 
     try
     {
@@ -16,6 +23,11 @@ async function SendComment()
 
     if(!response.ok) {throw new Error("Server error")}
 
+    if(response.ok)
+    {
+        alert("Post succesfully sent");
+        inputElement.value = "";
+    }
 
     } catch(error) {
         console.error("Error", error);

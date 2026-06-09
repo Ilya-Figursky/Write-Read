@@ -9,7 +9,7 @@ namespace Core.Models
         public string Message { get; set; }
         public Response(string message) 
         { 
-            if(message == "Bad" || message == "Saccessful") Message = message;
+            if(message == "Bad" || message == "Successful") Message = message;
             else
             {
                 throw new ArgumentException("Message must be either 'Bad' or 'Successful': ", nameof(message));

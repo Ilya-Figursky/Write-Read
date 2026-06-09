@@ -342,7 +342,23 @@ namespace Persistence.Repository
             return complaintList;
         }
 
+        public async Task CancelComplaintAsync(Guid postId)
+        {
+            using var connection = _provider.GetConnection();
 
+            await connection.OpenAsync();
+
+            var sql = """
+                DELETE FROM complaints
+                WHERE post_id = @postId;
+                """;
+
+            using var command = new NpgsqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("postId", postId);
+
+            command.ExecuteNonQuery();
+        }
 
 
 

@@ -126,6 +126,7 @@ namespace Application.Services
                 postDTO.CreatedAt = item.CreatedAt;
                 postDTO.ComplaintCount = item.ComplaintCount;
                 postDTO.ReactionCount = item.ReactionCount;
+                postDTO.PostId = item.Id;
 
                 postsDTO.Add(postDTO);
             }
@@ -161,17 +162,14 @@ namespace Application.Services
 
             for (int i = 0; i < postsWithComplaintsList.Count; i++)
             {
-                Guid correntPostId = postsWithComplaintsList[i].PostId;
+                Guid currentPostId = postsWithComplaintsList[i].PostId;
+                var currentPost = postsWithComplaintsList[i];
 
-                if (postsWithComplaintsList[i].PostId == postsWithComplaintsList[i + 1].PostId)
-                {
-                    newPostsWithComplaintsList.Add(postsWithComplaintsList[i]);
+                newPostsWithComplaintsList.Add(currentPost);
 
-                    postsWithComplaintsList.RemoveAll(p => p.PostId == correntPostId);
+                postsWithComplaintsList.RemoveAll(p => p.PostId == currentPostId);
 
-                    i = 0;
-                }
-
+                i = 0;
             }
 
             postsWithComplaintsList = newPostsWithComplaintsList;
@@ -179,7 +177,10 @@ namespace Application.Services
             return postsWithComplaintsList;
         }
 
-        
+        public async Task CancelComplaintAsync(Guid postId)
+        {
+            await _repository.CancelComplaintAsync(postId);
+        }
 
     }
 }

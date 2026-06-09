@@ -17,5 +17,6 @@ namespace Application.Services
         Task<List<PostDTO>> GetAllPostByUserIdAsync(Guid userId);
         Task SetComplaint(string reason, Guid userId, Guid postId);
         Task<List<PostWithComplaintDTO>> GetAllPostsWithComplaints();
+        Task CancelComplaintAsync(Guid postId);
     }
 }
