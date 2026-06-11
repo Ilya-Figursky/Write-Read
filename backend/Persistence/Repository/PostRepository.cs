@@ -30,8 +30,7 @@ namespace Persistence.Repository
                     content,
                     created_at
                     FROM posts
-                    ORDER BY created_at DESC
-                    LIMIT 10";
+                    ORDER BY created_at DESC";
 
             using var command = new NpgsqlCommand(sql, connection);
 
