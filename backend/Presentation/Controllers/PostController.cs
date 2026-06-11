@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Persistence.Repository;
@@ -80,7 +81,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("admin/postsWithComplaints")]
-        public async Task<IActionResult> GetAllPostsWithComplaints() 
+        public async Task<IActionResult> GetAllPostsWithComplaints()
         {
             var posts = await _postService.GetAllPostsWithComplaints();
             return Ok(posts);
