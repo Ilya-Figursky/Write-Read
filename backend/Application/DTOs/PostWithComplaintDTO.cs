@@ -6,6 +6,7 @@ namespace Application.DTOs
 {
     public class PostWithComplaintDTO
     {
+        //public string AuthorName { get; set; }
         public Guid PostId { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }

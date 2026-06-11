@@ -58,7 +58,7 @@ async function SignIn()
         const result = await response.json();
 
         console.log("Successfully");
-        alert("Successfully sign in");
+        //alert("Successfully sign in");
 
         sessionStorage.setItem("userId", result.id);
         sessionStorage.setItem("userName", result.name);
