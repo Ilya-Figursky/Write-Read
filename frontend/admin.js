@@ -36,7 +36,9 @@ async function loadPostsByUserId()
             
             const postBlok = document.createElement("div");
 
+            //<p><i>${post.authorName}</i></p>
             postBlok.innerHTML = `
+                
                 <p>${post.content}</p>
                 <p></p>
 

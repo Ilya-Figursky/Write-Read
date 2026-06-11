@@ -37,6 +37,7 @@ async function loadPostsByUserId()
             const postBlok = document.createElement("div");
 
             postBlok.innerHTML = `
+                <p><i>${post.authorName}</i></p>
                 <p>${post.content}</p>
 
                 <button class = "likeButton" data-post-id="${post.postId}">${post.isLiked ? "❤️" : "🤍"}</button>
