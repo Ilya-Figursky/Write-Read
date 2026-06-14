@@ -1,0 +1,42 @@
+[33mb3be5f3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m version 0.1.0-alpha
+[33m9860b3e[m Backend: rename database name
+[33mdfb857a[m Frontend: translate text of complaints reasons from russian to ukrainian
+[33m8b4c45e[m Add showing of user name on users page
+[33mad2c096[m Frontent: add complaint reason line under posts fro admins
+[33m552ac00[m Global: add abilities for admins: delete posts, cancel complaints; add bility for users to delete their posts. Backend: fix incorrect deletion of duplicate posts for admin's complaint list; fix incorrect notification of exeption in 'Response' class Frontend: add notification when post was successfully sent and notification if post field is empty when clicking the send 'Button'
+[33m7c2b1b6[m Global: add tools for admins
+[33m7539893[m Global: add ability to set complaint to posts
+[33m2261826[m Add ability to watch comments of posts and set likes to comments
+[33mf4b0c02[m Global: add ability to write comments
+[33m3a262eb[m Remake all necessary sql queries
+[33mc1f76c1[m Global: remake DB scheme
+[33m66d08b5[m update DB scheme
+[33m1d95c1c[m Global: add feature remove like
+[33meb0fc1c[m Frontend: fix bug when pressed liek button it does not change color
+[33m2b245bd[m Frontend: add 'complaint button' without ligic, add button of adding of a comment without ligic
+[33mc4079d2[m Add feature set like, shivign of like on posts. Update DB scheme
+[33m84d1568[m Add feature to send and save posts. Fix incorrect seting of userId when user signs in in the program
+[33m8a77ed7[m Frontend: add setting real username on home page
+[33m2511789[m Add 'profile.html', create folder - 'Profile pictires', add profile button in Home page
+[33m145fa60[m Frontend: add: 'postForm.html', 'postForm.js'; rename 'guest.js' into 'register.js'. In 'postForm.html' add post form and send button
+[33mb612e40[m Backend: Add 'SetId()' in 'User', 'SingIn()' chain. Frontend: Rename id of Sign In button, some little fixes in different file, add 'home.html', 'home.js'
+[33m39994b4[m Frontend: add 'SignUp()', add two attribute to 'UserRegisterDTO'
+[33mce0c03a[m Add database scheme
+[33maccbfa2[m Frontend: add file register.js. Backend: add UserController, UserRepository, UserService
+[33mc99e613[m Add .css file
+[33me8fc699[m Add post feed in frontend, fix some bugs in backand for correct work and connection between frontend and backend
+[33mb012cb8[m add 'PostDTO', remake some methods and interfaces. Add 'GetAllPosts()' into PostController
+[33m89e7fdb[m remake architecture, GetAllPosts(), update Post.cs
+[33m9b3bb84[m add 'index.html', 'register.html'
+[33mef6a41f[m set up the connection to database
+[33m550d4e5[m update User
+[33mdb30d06[m update 'Coment' and create 'User'
+[33m68d80c5[m fix gitignore
+[33mc3aba75[m Add '.gitignore'
+[33m4d01b96[m remove buiding files
+[33m028e90b[m Update class 'Post'
+[33m1c69e7a[m Add 'PostPost' to IPostRepository
+[33m4c3fd46[m Add 'IPostRepository' and 'PostRepository' into 'Repository'
+[33m7e4d0e1[m Add classes: 'Post', 'Comment'
+[33md60391e[m Add 'REDME.md' file
+[33mcd4ef53[m Initial commit

@@ -2,11 +2,6 @@
 using Core.Models;
 using Npgsql;
 using Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Xml.Linq;
 
 namespace Persistence.Repository
 {

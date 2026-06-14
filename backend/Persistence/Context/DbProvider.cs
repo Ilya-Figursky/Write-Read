@@ -1,6 +1,5 @@
 ﻿using Npgsql;
 
-
 namespace Persistence.Context
 {
     public class DbProvider

@@ -31,11 +31,13 @@ namespace Presentation
             builder.Services.AddScoped<ICommentRepository, CommentRepository>();
             builder.Services.AddScoped<ICommentService, CommentService>();
 
+
+          
             builder.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins("http://127.0.0.1:5500") // Адрес фронтенда из Live Server для прохождения проверки браузера
+                    policy.WithOrigins("http://127.0.0.1:5500", "http://localhost:63342") // Frontend url for CORS policy
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });

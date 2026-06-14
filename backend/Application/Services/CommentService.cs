@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Persistence.Repository;
+﻿
 using Core.Models;
 using Application.DTOs;
 using Core.Interfaces;

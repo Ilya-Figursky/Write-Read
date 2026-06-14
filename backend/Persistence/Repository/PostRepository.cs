@@ -1,13 +1,7 @@
-﻿using Application.DTOs;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Core.Models;
 using Npgsql;
 using Persistence.Context;
-using System.Data.Common;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml;
 
 namespace Persistence.Repository
 {
@@ -131,7 +125,7 @@ namespace Persistence.Repository
             using var reader = await command.ExecuteReaderAsync();
 
             List<PostLike> likesList = new List<PostLike>();
-
+            
             while (await reader.ReadAsync())
             {
                 PostLike like = new PostLike();

@@ -2,9 +2,6 @@
 using Core.Models;
 using Npgsql;
 using Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Persistence
 {
@@ -14,7 +11,7 @@ namespace Persistence
 
         public PersistanceCore(DbProvider provider) { _provider = provider; }
 
-        public async Task<User> GetUserDataById(Guid id) // if its universal method - add new sql command for geting user's posts
+        public async Task<User> GetUserDataById(Guid id) // if its universal method - add new SQL command for geting user's posts
         {                                                // maybe the implementaton of that method is not good idea because of the method get all user's data for one thing like 'AuthorName'. Maybe!!!
             using var connection = _provider.GetConnection();
 

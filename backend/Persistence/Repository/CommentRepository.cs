@@ -1,13 +1,7 @@
-﻿using Application.DTOs;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Core.Models;
 using Npgsql;
 using Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 
 namespace Persistence.Repository
 {
